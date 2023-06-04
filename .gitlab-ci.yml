@@ -37,7 +37,7 @@ stage_test:
     - cp $CI_PROJECT_DIR/build/folder.sh test_dir/
     - cd test_dir
     - chmod +x folder.sh
-    - ./folder.sh | tee test_result.log 
+    - mv test_result.log $CI_PROJECT_DIR/test_dir/
     - echo "Tests finished."
   artifacts:
     paths:
