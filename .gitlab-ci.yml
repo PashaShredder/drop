@@ -54,6 +54,6 @@ stage_deploy:
     - apt-get update && apt-get install -y ssh
   script:
     - echo "Deploying to VPS..."
-    - ssh dozer@dozer.pw "mkdir -p /home/dozer/deploy"
+    - ssh -o “StrictHostKeyChecking=no” dozer@dozer.pw "mkdir -p /home/dozer/deploy"
     - scp $CI_PROJECT_DIR/build/folder.sh dozer@dozer.pw:/home/dozer/deploy/folder.sh
     - echo "Deployment finished."
