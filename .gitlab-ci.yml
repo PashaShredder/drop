@@ -7,6 +7,9 @@ stage_build:
     tags:
         - build
     script:
+        - mkdir build
+        - cp folder.sh build/
+        - cd build
         - echo "folders_count=10" >> folder.sh
         - echo "path_to_save=/home/shredder/folder_script/" >> folder.sh
         - echo "" >> $path_to_save/folder.sh
