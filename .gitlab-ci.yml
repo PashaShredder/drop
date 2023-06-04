@@ -1,6 +1,3 @@
-before_script:
-  - apt-get update && apt-get install -y ssh
-
 stages:
   - build
   - test
@@ -53,8 +50,10 @@ stage_deploy:
   image: ubuntu:20.04
   tags:
     - deploy
+  before_script:
+    - apt-get update && apt-get install -y ssh
   script:
     - echo "Deploying to VPS..."
-    - ssh dozer@dozer.pw "mkdir -p /home/dozer/deploy"
-    - scp $CI_PROJECT_DIR/build/folder.sh dozer@dozer.pw:/home/dozer/deploy/folder.sh
+    - ssh dozer@192.168.0.17 "mkdir -p /home/dozer/deploy"
+    - scp $CI_PROJECT_DIR/build/folder.sh dozer@192.168.0.17:/home/dozer/deploy/folder.sh
     - echo "Deployment finished."
