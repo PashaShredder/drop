@@ -34,7 +34,7 @@ stage_test:
   script:
     - echo "Running tests..."
     - mkdir test_dir
-    - cp ../build/folder.sh test_dir/
+    - cp $CI_PROJECT_DIR/build/folder.sh test_dir/
     - cd test_dir
     - chmod +x folder.sh
     - ./folder.sh > test_result.log 
