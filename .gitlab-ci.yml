@@ -42,4 +42,4 @@ stage_test:
   artifacts:
     paths:
       - test_dir/
-      - test_result.log
+      - test_dir/test_result.log
