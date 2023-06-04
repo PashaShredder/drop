@@ -21,3 +21,6 @@ stage_build:
         - echo "done" >> folder.sh
         - echo "" >> folder.sh
         - echo "echo \"Script finished in \$(date)\" >> \$path_to_save/script.log" >> folder.sh
+    artifacts:
+        paths:
+          - build/
