@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - deploy
 
 stage_build:
     stage: build
@@ -43,3 +44,14 @@ stage_test:
     paths:
       - test_dir/
       - test_dir/test_result.log
+
+stage_deploy:
+  stage: deploy
+  image: ubuntu:20.04
+  tags:
+    - deploy
+  script:
+    - echo "Deploying to VPS..."
+    - ssh dozer@dozer.pw "mkdir -p /home/dozer/deploy"
+    - scp $CI_PROJECT_DIR/build/folder.sh dozer@dozer.pw:/home/dozer/deploy/folder.sh
+    - echo "Deployment finished."
