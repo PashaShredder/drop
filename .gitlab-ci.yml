@@ -7,4 +7,14 @@ stage_build:
     tags:
         - build
     script:
-        - echo "Hi GitLab"
+        - echo "folders_count=10" >> folder.sh
+        - echo "path_to_save=/home/shredder/folder_script/" >> folder.sh
+        - echo "" >> $path_to_save/folder.sh
+        - echo "current_date=\$(date +%Y.%m.%d)" >> folder.sh
+        - echo "" >> $path_to_save/folder.sh
+        - echo "for ((i=1;i<=\$folders_count;i++)); do" >> folder.sh
+        - echo "  folder_name=\"\${current_date}_Папка\$i\"" >> folder.sh
+        - echo "  mkdir -p \"\$path_to_save/\$folder_name\"" >> folder.sh
+        - echo "done" >> folder.sh
+        - echo "" >> folder.sh
+        - echo "echo \"Script finished in \$(date)\" >> \$path_to_save/script.log" >> folder.sh
