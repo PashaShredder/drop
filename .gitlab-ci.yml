@@ -30,7 +30,7 @@ stage_test:
   stage: test
   image: ubuntu:20.04
   tags:
-    - build
+    - test
   script:
     - echo "Running tests..."
     - mkdir test_dir
