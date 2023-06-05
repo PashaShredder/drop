@@ -58,6 +58,7 @@ stage_deploy:
     - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
   script:
     - echo "Deploying to VPS..."
-    - ssh -o StrictHostKeyChecking=no -t dozer@192.168.0.17 "mkdir -p /home/dozer/deploy"
-    - scp -o StrictHostKeyChecking=no "$CI_PROJECT_DIR/build/folder.sh" dozer@192.168.0.17:/home/dozer/deploy/folder.sh
+    - ssh -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no -t dozer@192.168.0.17 "mkdir -p /home/dozer/deploy"
+    - scp -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no "$CI_PROJECT_DIR/build/folder.sh" dozer@192.168.0.17:/home/dozer/deploy/folder.sh
     - echo "Deployment finished."
+
