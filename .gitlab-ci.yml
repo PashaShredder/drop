@@ -53,12 +53,12 @@ stage_deploy:
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY") > /dev/null
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
   script:
     - echo "Deploying to VPS..."
-    - ssh -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no -t $SSH_USER@$SSH_IP "mkdir -p $SSH_DEPLOY_PATH"
-    - scp -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no "$CI_PROJECT_DIR/build/folder.sh" $SSH_USER@$SSH_IP:$SSH_DEPLOY_PATH/folder.sh
+    - ssh -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no -t $SSH_USER@$SSH_IP "mkdir -p $SSH_DEPLOY_PATH" > /dev/null
+    - scp -i "$SSH_PRIVATE_KEY" -o StrictHostKeyChecking=no "$CI_PROJECT_DIR/build/folder.sh" $SSH_USER@$SSH_IP:$SSH_DEPLOY_PATH/folder.sh > /dev/null
     - echo "Deployment finished."
 
